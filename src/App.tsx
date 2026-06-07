@@ -1444,10 +1444,19 @@ export default function App() {
                       <button
                         type="submit"
                         disabled={formSubmitting}
-                        className="w-full bg-gradient-to-r from-[#CC2936] to-[#1E3A8A] text-white font-extrabold text-base py-3.5 rounded-full hover:from-white hover:to-white hover:text-black transition-all duration-300 shadow-md shadow-rose-950/20 cursor-pointer text-center flex items-center justify-center gap-2 active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed"
+                        className="w-full bg-gradient-to-r from-[#CC2936] to-[#1E3A8A] text-white font-extrabold text-sm sm:text-base px-5 py-3.5 rounded-full hover:from-white hover:to-white hover:text-black transition-all duration-300 shadow-md shadow-rose-950/20 cursor-pointer text-center flex items-center justify-center gap-2 active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed"
                       >
-                        <span>{formSubmitting ? 'Sending...' : 'Activate My Free Special Offer Now'}</span>
-                        {!formSubmitting && <ArrowRight size={18} />}
+                        <span className="leading-snug">
+                          {formSubmitting ? (
+                            'Sending...'
+                          ) : (
+                            <>
+                              <span className="sm:hidden">Activate My Free Offer</span>
+                              <span className="hidden sm:inline">Activate My Free Special Offer Now</span>
+                            </>
+                          )}
+                        </span>
+                        {!formSubmitting && <ArrowRight size={18} className="shrink-0" />}
                       </button>
                     </div>
 
