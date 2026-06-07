@@ -36,6 +36,7 @@ import {
 import { assetUrl } from './assetUrl';
 import { submitTrialForm } from './submitForm';
 import HeroBackground from './components/HeroBackground';
+import ScrollToTop from './components/ScrollToTop';
 import { GALLERY_ITEMS } from './data/galleryItems';
 import ViewLoadingFallback from './components/ViewLoadingFallback';
 
@@ -1829,6 +1830,7 @@ export default function App() {
         )}
       </AnimatePresence>
 
+      <ScrollToTop />
     </div>
   );
 }

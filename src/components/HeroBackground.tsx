@@ -18,11 +18,19 @@ function pickHeroVideoSrc() {
 export default function HeroBackground() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoSrc, setVideoSrc] = useState(pickHeroVideoSrc);
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches,
+  );
   const [showFallbackImage, setShowFallbackImage] = useState(false);
+
+  const mediaClass = isMobile
+    ? 'h-full w-full object-cover brightness-[0.68] contrast-[1.14] saturate-[1.06]'
+    : 'h-full w-full object-cover brightness-[0.5] contrast-[1.05]';
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 767px)');
     const updateSource = () => {
+      setIsMobile(mediaQuery.matches);
       setShowFallbackImage(false);
       setVideoSrc(mediaQuery.matches ? HERO_VIDEO_MOBILE : HERO_VIDEO_DESKTOP);
     };
@@ -62,7 +70,7 @@ export default function HeroBackground() {
           playsInline
           preload="auto"
           onError={() => setShowFallbackImage(true)}
-          className="h-full w-full object-cover brightness-[0.5] contrast-[1.05]"
+          className={mediaClass}
         >
           <source src={videoSrc} type="video/mp4" />
         </video>
@@ -72,7 +80,7 @@ export default function HeroBackground() {
           alt=""
           aria-hidden="true"
           decoding="async"
-          className="h-full w-full object-cover brightness-[0.5] contrast-[1.05]"
+          className={mediaClass}
         />
       )}
       <div className="absolute inset-0 bg-[radial-gradient(#1c1c1c_1px,transparent_1px)] [background-size:16px_16px] opacity-15" />
