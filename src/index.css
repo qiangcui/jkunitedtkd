@@ -10,7 +10,7 @@
   --color-immersive-blue: #1E3A8A;
 
   --font-size-xs: 0.95rem; /* Larger small texts for large monitors */
-  --font-size-sm: 1.05rem;
+  --font-size-sm: 1rem; /* 16px */
   --font-size-base: 1.15rem;
 }
 
@@ -18,7 +18,7 @@
 @media (max-width: 1024px) {
   :root {
     --font-size-xs: 0.88rem;
-    --font-size-sm: 0.98rem;
+    --font-size-sm: 1rem; /* 16px */
     --font-size-base: 1.08rem;
   }
 }
@@ -26,7 +26,7 @@
 @media (max-width: 640px) {
   :root {
     --font-size-xs: 0.82rem;
-    --font-size-sm: 0.92rem;
+    --font-size-sm: 1rem; /* 16px */
     --font-size-base: 1.02rem;
   }
 }
@@ -42,10 +42,18 @@
   font-size: 13px;
 }
 [class*="text-[12px]"], .text-\[12px\] {
-  font-size: 14px;
+  font-size: 16px;
 }
 [class*="text-[13px]"], .text-\[13px\] {
-  font-size: 14px;
+  font-size: 16px;
+}
+[class*="text-[14px]"], .text-\[14px\] {
+  font-size: 16px;
+}
+
+.text-sm {
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 
 /* Custom premium scrollbar */

@@ -34,6 +34,7 @@ import {
   Info
 } from 'lucide-react';
 import { assetUrl } from './assetUrl';
+import { submitTrialForm } from './submitForm';
 
 import {
   TAEGEUK_FORMS,
@@ -271,6 +272,8 @@ export default function App() {
   const [trialModalOpen, setTrialModalOpen] = useState(false);
   const [selectedProgram, setSelectedProgram] = useState<string>('Children (Ages 7-12)');
   const [trialFormSubmitted, setTrialFormSubmitted] = useState(false);
+  const [formSubmitting, setFormSubmitting] = useState(false);
+  const [formError, setFormError] = useState('');
 
   // Photo Gallery interactive state
   const [galleryFilter, setGalleryFilter] = useState<'all' | 'master' | 'classes' | 'facility'>('all');
@@ -296,10 +299,6 @@ export default function App() {
     email: '',
     notes: '',
   });
-
-  // Footer Quick contact form state
-  const [footerContactSubmitted, setFooterContactSubmitted] = useState(false);
-  const [footerContactEmail, setFooterContactEmail] = useState('');
 
   // Auto-sliding gallery state and interval
   const [autoSliderIndex, setAutoSliderIndex] = useState(0);
@@ -385,14 +384,33 @@ export default function App() {
   }, []);
 
   // Handler for Trial session signups
-  const handleTrialSubmit = (e: FormEvent) => {
+  const handleTrialSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    // Simulate premium API pipeline validation
-    setTrialFormSubmitted(true);
+    setFormSubmitting(true);
+    setFormError('');
+
+    try {
+      await submitTrialForm({
+        formType: trialModalOpen ? 'trial-booking-modal' : 'trial-booking-contact',
+        program: selectedProgram,
+        parentName: formData.parentName,
+        studentName: formData.studentName,
+        studentAge: formData.studentAge,
+        phone: formData.phone,
+        email: formData.email,
+        notes: formData.notes,
+      });
+      setTrialFormSubmitted(true);
+    } catch {
+      setFormError('Unable to submit right now. Please call us at 720-900-4546 or try again.');
+    } finally {
+      setFormSubmitting(false);
+    }
   };
 
   const resetTrialForm = () => {
     setTrialFormSubmitted(false);
+    setFormError('');
     setFormData({
       parentName: '',
       studentName: '',
@@ -564,32 +582,22 @@ export default function App() {
           ? 'bg-[#0A1128]/95 backdrop-blur-md shadow-[0_10px_30px_rgba(204,41,54,0.1)] border-b border-[#1E3A8A]/30'
           : 'bg-[#0A1128]/60 backdrop-blur-sm border-b border-[#1E3A8A]/20'
       }`}>
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-3 flex justify-between items-center">
-          {/* Logo with clean typographic redesign and brand image integration */}
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-2 md:py-3 flex justify-between items-center">
+          {/* Logo */}
           <a
             href="#home"
             onClick={(e) => {
               e.preventDefault();
               handleNavigation('home', '#home');
             }}
-            className="flex items-center gap-3 group"
+            className="flex items-center group shrink-0"
           >
-            <div className="relative w-12 h-12 bg-white rounded-lg p-1 overflow-hidden transition-all duration-500 group-hover:scale-105 shadow-md shadow-red-500/20">
-              <img
-                src={assetUrl("/media/cropped-logo-192x192.webp")}
-                alt="JK United Taekwondo Logo"
-                className="w-full h-full object-contain"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-            <div className="flex flex-col">
-              <span className="font-display font-black text-lg md:text-xl text-white tracking-widest leading-none">
-                JK UNITED
-              </span>
-              <span className="text-[10px] tracking-[0.25em] text-[#CC2936] font-semibold uppercase leading-tight">
-                Taekwondo Center
-              </span>
-            </div>
+            <img
+              src={assetUrl("/media/logo-jkunited.png")}
+              alt="JK United Taekwondo Center"
+              className="h-14 sm:h-16 md:h-[4.5rem] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02] shadow-md shadow-black/20"
+              referrerPolicy="no-referrer"
+            />
           </a>
 
           {/* Desktop Navigation Link Block */}
@@ -2999,13 +3007,18 @@ export default function App() {
                       />
                     </div>
 
+                    {formError && (
+                      <p className="text-sm text-red-400 text-center">{formError}</p>
+                    )}
+
                     <div>
                       <button
                         type="submit"
-                        className="w-full bg-gradient-to-r from-[#CC2936] to-[#1E3A8A] text-white font-extrabold text-base py-3.5 rounded-full hover:from-white hover:to-white hover:text-black transition-all duration-300 shadow-md shadow-rose-950/20 cursor-pointer text-center flex items-center justify-center gap-2 active:scale-95"
+                        disabled={formSubmitting}
+                        className="w-full bg-gradient-to-r from-[#CC2936] to-[#1E3A8A] text-white font-extrabold text-base py-3.5 rounded-full hover:from-white hover:to-white hover:text-black transition-all duration-300 shadow-md shadow-rose-950/20 cursor-pointer text-center flex items-center justify-center gap-2 active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed"
                       >
-                        <span>Activate My Free Special Offer Now</span>
-                        <ArrowRight size={18} />
+                        <span>{formSubmitting ? 'Sending...' : 'Activate My Free Special Offer Now'}</span>
+                        {!formSubmitting && <ArrowRight size={18} />}
                       </button>
                     </div>
 
@@ -3050,127 +3063,120 @@ export default function App() {
         </div>
       </section>
 
-      {/* Structured footer with explicit details */}
-      <footer className="relative z-10 bg-black border-t border-zinc-800 text-zinc-300 text-base py-16">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 space-y-12">
-          
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 pb-12 border-b border-[#1E3A8A]/20">
-            
-            {/* Logo details block */}
-            <div className="md:col-span-4 space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="relative w-10 h-10 bg-white rounded p-0.5 overflow-hidden">
-                  <img
-                    src={assetUrl("/media/cropped-logo-192x192.webp")}
-                    alt="JK United Taekwondo Logo"
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-display font-black text-lg text-white tracking-widest leading-none">
-                    JK UNITED
-                  </span>
-                  <span className="text-xs tracking-widest text-[#CC2936] font-semibold uppercase">
-                    TAEKWONDO CENTER
-                  </span>
-                </div>
-              </div>
- 
-              <p className="text-sm font-light text-zinc-200 leading-relaxed max-w-xs">
+      {/* Footer */}
+      <footer className="relative z-10 bg-black border-t border-zinc-800 text-zinc-300 py-14 md:py-16">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-14 pb-12 border-b border-[#1E3A8A]/20 items-start">
+
+            {/* Brand */}
+            <div className="space-y-5 sm:col-span-2 lg:col-span-1">
+              <img
+                src={assetUrl("/media/logo-jkunited.png")}
+                alt="JK United Taekwondo Center"
+                className="h-12 w-auto object-contain"
+              />
+              <p className="text-sm font-light text-zinc-400 leading-relaxed max-w-sm">
                 Fostering confidence, core agility, and world-class traditional martial arts discipline under certified Team USA and South Korean guidance since 2005.
               </p>
- 
-              <div className="flex gap-3 pt-2">
+              <a
+                href="https://www.facebook.com/jkunitedtkd"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-[#CC2936] transition-colors"
+                aria-label="Facebook page"
+              >
+                <span className="w-8 h-8 rounded-full bg-[#0D1B3E] border border-[#1E3A8A]/30 flex items-center justify-center">
+                  <Facebook size={14} />
+                </span>
+                Follow us on Facebook
+              </a>
+            </div>
+
+            {/* Quick Navigation */}
+            <div className="space-y-5">
+              <h4 className="text-xs uppercase font-extrabold tracking-[0.2em] text-white">Quick Navigation</h4>
+              <ul className="grid grid-cols-2 gap-x-6 gap-y-3 text-sm font-semibold">
+                {[
+                  { label: 'Home', view: 'home' as const, hash: '#home' },
+                  { label: 'About Us', view: 'about-us' as const },
+                  { label: 'Schedule', view: 'schedule' as const },
+                  { label: 'Gallery', view: 'gallery' as const },
+                  { label: 'Education', view: 'education' as const },
+                  { label: 'Contact Us', view: 'home' as const, hash: '#hours', noActive: true },
+                ].map(({ label, view, hash, noActive }) => (
+                  <li key={label}>
+                    <button
+                      onClick={() => handleNavigation(view, hash)}
+                      className={`transition-colors cursor-pointer text-left ${
+                        !noActive && currentView === view
+                          ? 'text-[#CC2936]'
+                          : 'text-zinc-400 hover:text-[#CC2936]'
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Contact & Location */}
+            <div className="space-y-5">
+              <h4 className="text-xs uppercase font-extrabold tracking-[0.2em] text-white">Contact & Location</h4>
+              <ul className="space-y-4 text-sm">
+                <li className="flex items-center gap-3">
+                  <span className="w-8 h-8 rounded-lg bg-[#0D1B3E] border border-[#1E3A8A]/30 flex items-center justify-center shrink-0">
+                    <Phone size={14} className="text-[#CC2936]" />
+                  </span>
+                  <a href="tel:7209004546" className="text-zinc-300 hover:text-white transition-colors font-medium">
+                    720-900-4546
+                  </a>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="w-8 h-8 rounded-lg bg-[#0D1B3E] border border-[#1E3A8A]/30 flex items-center justify-center shrink-0">
+                    <Mail size={14} className="text-[#CC2936]" />
+                  </span>
+                  <a href="mailto:info@jkunitedtkd.com" className="text-zinc-300 hover:text-white transition-colors font-medium">
+                    info@jkunitedtkd.com
+                  </a>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="w-8 h-8 rounded-lg bg-[#0D1B3E] border border-[#1E3A8A]/30 flex items-center justify-center shrink-0 mt-0.5">
+                    <MapPin size={14} className="text-[#CC2936]" />
+                  </span>
+                  <span className="text-zinc-400 leading-relaxed">
+                    22651 E Aurora Pkwy Unit A-8<br />
+                    Aurora, CO 80016
+                  </span>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+
+          <div className="mt-10 pt-8 border-t border-[#1E3A8A]/25">
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-5 lg:gap-8 text-sm text-zinc-400">
+              <p className="text-center lg:text-left order-2 lg:order-1">
+                © 2026 JK United TKD. All Rights Reserved.
+              </p>
+
+              <p className="text-center order-1 lg:order-2">
+                Designed by{' '}
                 <a
-                  href="https://www.facebook.com/jkunitedtkd"
+                  href="https://gloriacloud.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-full bg-[#0D1B3E] border border-[#1E3A8A]/30 text-zinc-200 hover:text-white hover:border-[#CC2936] transition-colors flex items-center justify-center cursor-pointer"
-                  aria-label="Facebook page Link"
+                  className="font-semibold text-zinc-200 hover:text-[#CC2936] transition-colors underline decoration-[#CC2936]/40 underline-offset-4 hover:decoration-[#CC2936]"
                 >
-                  <Facebook size={16} />
+                  Gloria Cloud
                 </a>
-              </div>
-            </div>
- 
-            {/* Quick Navigation Links */}
-            <div className="md:col-span-3 space-y-4">
-              <h4 className="text-sm uppercase font-extrabold tracking-widest text-white">Quick Navigation</h4>
-              <ul className="space-y-2.5 text-sm text-zinc-200 font-light">
-                <li><button onClick={() => handleNavigation('home')} className="hover:text-[#CC2936] transition-colors cursor-pointer text-left">Home Base</button></li>
-                <li><button onClick={() => handleNavigation('home', '#master')} className="hover:text-[#CC2936] transition-colors cursor-pointer text-left">Our Master Coach</button></li>
-                <li><button onClick={() => handleNavigation('home', '#programs')} className="hover:text-[#CC2936] transition-colors cursor-pointer text-left">Active Curriculums</button></li>
-                <li><button onClick={() => handleNavigation('schedule')} className="hover:text-[#CC2936] transition-colors cursor-pointer text-left font-semibold text-white">Class Schedule & Calendar</button></li>
-                <li><button onClick={() => handleNavigation('home', '#hours')} className="hover:text-[#CC2936] transition-colors cursor-pointer text-left">Contact & Booking Form</button></li>
-              </ul>
-            </div>
- 
-            {/* Studio Contact details directly mapped to the source */}
-            <div className="md:col-span-2 space-y-4">
-              <h4 className="text-sm uppercase font-extrabold tracking-widest text-white">Contacts & Location</h4>
-              <ul className="space-y-2 text-sm text-zinc-200 font-light">
-                <li className="flex items-center gap-1.5 font-semibold text-zinc-300">
-                  <Phone size={14} className="text-[#CC2936]" />
-                  <a href="tel:7209004546" className="hover:text-white transition-colors">720-900-4546</a>
-                </li>
-                <li className="flex items-center gap-1.5">
-                  <Mail size={14} className="text-[#CC2936] shrink-0" />
-                  <a href="mailto:info@jkunitedtkd.com" className="hover:text-white transition-colors break-all">info@jkunitedtkd.com</a>
-                </li>
-                <li className="flex items-start gap-1.5 pt-1">
-                  <MapPin size={14} className="text-rose-500 shrink-0 mt-0.5" />
-                  <span>22651 E Aurora Pkwy Unit A-8, Aurora, CO 80016</span>
-                </li>
-              </ul>
-            </div>
- 
-            {/* Premium quick news enrollment */}
-            <div className="md:col-span-3 space-y-4">
-              <h4 className="text-sm uppercase font-extrabold tracking-widest text-white">Quick Newsletter</h4>
-              <p className="text-sm text-zinc-200 font-light">Enter email to receive local seminar notices, event calendars, or seasonal breaks announcements.</p>
-              
-              {!footerContactSubmitted ? (
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    if (footerContactEmail) setFooterContactSubmitted(true);
-                  }}
-                  className="flex flex-col gap-2"
-                >
-                  <input
-                    type="email"
-                    required
-                    value={footerContactEmail}
-                    onChange={(e) => setFooterContactEmail(e.target.value)}
-                    placeholder="Enter email..."
-                    className="w-full bg-[#0A1128] border border-[#1E3A8A]/30 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-[#CC2936] transition-colors"
-                  />
-                  <button
-                    type="submit"
-                    className="w-full bg-[#0D1B3E] hover:bg-[#CC2936] hover:text-white border border-[#1E3A8A]/30 rounded-lg py-2 text-sm font-bold text-zinc-300 transition-colors cursor-pointer active:scale-95"
-                  >
-                    Subscribe Alerts
-                  </button>
-                </form>
-              ) : (
-                <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-lg text-sm flex items-center gap-1.5">
-                  <Check size={16} />
-                  <span>Subscribed successfully!</span>
-                </div>
-              )}
-            </div>
- 
-          </div>
- 
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-zinc-350 font-light">
-            <p>Copyright © 2026 JK United TKD. All Rights Reserved.</p>
-            <div className="flex gap-4">
-              <span>Modern Redesign 2026</span>
-              <span>•</span>
-              <span>Kukkiwon Standard</span>
+              </p>
+
+              <p className="text-center lg:text-right order-3 text-zinc-500">
+                Modern Redesign 2026 <span className="text-[#1E3A8A] mx-1.5">·</span> Kukkiwon Standard
+              </p>
             </div>
           </div>
- 
         </div>
       </footer>
 
@@ -3339,12 +3345,17 @@ export default function App() {
                       </select>
                     </div>
 
+                    {formError && (
+                      <p className="text-xs text-red-400 text-center">{formError}</p>
+                    )}
+
                     <div className="pt-2">
                       <button
                         type="submit"
-                        className="w-full bg-[#CC2936] text-white font-extrabold text-xs tracking-widest uppercase py-3.5 rounded-full hover:bg-white hover:text-black transition-colors cursor-pointer active:scale-95"
+                        disabled={formSubmitting}
+                        className="w-full bg-[#CC2936] text-white font-extrabold text-xs tracking-widest uppercase py-3.5 rounded-full hover:bg-white hover:text-black transition-colors cursor-pointer active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed"
                       >
-                        Secure Free Spot Now
+                        {formSubmitting ? 'Sending...' : 'Secure Free Spot Now'}
                       </button>
                     </div>
                     
