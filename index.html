@@ -3,11 +3,80 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0A1128" />
+    <meta name="description" content="JK United Taekwondo — world-class martial arts training in Aurora, CO led by Master Jin Hyuk Kim." />
     <title>JK United Taekwondo</title>
+    <link rel="icon" type="image/png" href="/media/logo-jkunited.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap"
+    />
+    <style>
+      html,
+      body {
+        margin: 0;
+        background: #0a1128;
+        color: #f3f4f6;
+      }
+
+      #app-loader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.25rem;
+        background: #0a1128;
+        transition: opacity 0.25s ease;
+      }
+
+      #app-loader.is-hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      #app-loader img {
+        height: 4.5rem;
+        width: auto;
+        object-fit: contain;
+      }
+
+      #app-loader .spinner {
+        width: 2rem;
+        height: 2rem;
+        border: 2px solid rgba(30, 58, 138, 0.35);
+        border-top-color: #cc2936;
+        border-radius: 50%;
+        animation: jk-spin 0.8s linear infinite;
+      }
+
+      #app-loader p {
+        margin: 0;
+        font-family: Poppins, system-ui, sans-serif;
+        font-size: 0.8rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #9ca3af;
+      }
+
+      @keyframes jk-spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
   </head>
   <body>
+    <div id="app-loader" aria-live="polite" aria-busy="true">
+      <img src="/media/logo-jkunited.png" alt="JK United Taekwondo" width="180" height="72" />
+      <div class="spinner" aria-hidden="true"></div>
+      <p>Loading</p>
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-

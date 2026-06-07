@@ -57,6 +57,10 @@ import {
   WONSHIM_DRILLS
 } from './education_data';
 
+function isMobileViewport() {
+  return typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches;
+}
+
 // Live timezone tracker structure
 interface StudioStatus {
   isOpen: boolean;
@@ -302,14 +306,26 @@ export default function App() {
 
   // Auto-sliding gallery state and interval
   const [autoSliderIndex, setAutoSliderIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(isMobileViewport);
+  const [heroVideoReady, setHeroVideoReady] = useState(false);
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    const mediaQuery = window.matchMedia('(max-width: 767px)');
+    const checkMobile = () => setIsMobile(mediaQuery.matches);
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    mediaQuery.addEventListener('change', checkMobile);
+    return () => mediaQuery.removeEventListener('change', checkMobile);
   }, []);
+
+  useEffect(() => {
+    if (isMobile) {
+      setHeroVideoReady(false);
+      return;
+    }
+
+    const timer = window.setTimeout(() => setHeroVideoReady(true), 600);
+    return () => window.clearTimeout(timer);
+  }, [isMobile]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -755,18 +771,29 @@ export default function App() {
         {/* Dark Video / Photographic Atmosphere Overlay */}
         <div className="absolute inset-0 bg-[#0A1128]/35 bg-gradient-to-b from-black/55 via-[#0A1128]/45 to-[#0A1128]/90 z-10" />
         
-        {/* Dynamic Video Background playing the JK United Video */}
+        {/* Hero background: poster on mobile; deferred video on desktop to avoid blocking first paint */}
         <div className="absolute inset-0 z-0">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            poster={assetUrl("/media/Untitled-design.jpg")}
-            className="w-full h-full object-cover filter brightness-[0.5] contrast-[1.05]"
-          >
-            <source src={assetUrl("/media/JK-United-Video-3.mp4")} type="video/mp4" />
-          </video>
+          <img
+            src={assetUrl('/media/Untitled-design.jpg')}
+            alt=""
+            aria-hidden="true"
+            fetchPriority="high"
+            decoding="async"
+            className="h-full w-full object-cover brightness-[0.5] contrast-[1.05]"
+          />
+          {heroVideoReady && (
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="none"
+              poster={assetUrl('/media/Untitled-design.jpg')}
+              className="absolute inset-0 h-full w-full object-cover brightness-[0.5] contrast-[1.05]"
+            >
+              <source src={assetUrl('/media/JK-United-Video-3.mp4')} type="video/mp4" />
+            </video>
+          )}
           {/* Subtle grid network to add polished modern vibe */}
           <div className="absolute inset-0 bg-[radial-gradient(#1c1c1c_1px,transparent_1px)] [background-size:16px_16px] opacity-15" />
         </div>
