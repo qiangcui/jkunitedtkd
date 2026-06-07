@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=Poppins:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Montserrat", sans-serif;
+  
+  --color-immersive-bg: #0A1128;
+  --color-immersive-accent: #CC2936;
+  --color-immersive-blue: #1E3A8A;
+
+  --font-size-xs: 0.95rem; /* Larger small texts for large monitors */
+  --font-size-sm: 1.05rem;
+  --font-size-base: 1.15rem;
+}
+
+/* Dynamically scale custom theme typography for tablets and smaller screens to resolve any layout overflow */
+@media (max-width: 1024px) {
+  :root {
+    --font-size-xs: 0.88rem;
+    --font-size-sm: 0.98rem;
+    --font-size-base: 1.08rem;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --font-size-xs: 0.82rem;
+    --font-size-sm: 0.92rem;
+    --font-size-base: 1.02rem;
+  }
+}
+
+/* Ensure any hardcoded inline micro-texts and smaller arbitrary units are scaled up appropriately but adapt recursively */
+[class*="text-[9px]"], .text-\[9px\] {
+  font-size: 12px;
+}
+[class*="text-[10px]"], .text-\[10px\] {
+  font-size: 13px;
+}
+[class*="text-[11px]"], .text-\[11px\] {
+  font-size: 13px;
+}
+[class*="text-[12px]"], .text-\[12px\] {
+  font-size: 14px;
+}
+[class*="text-[13px]"], .text-\[13px\] {
+  font-size: 14px;
+}
+
+/* Custom premium scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0A1128;
+}
+::-webkit-scrollbar-thumb {
+  background: #1E3A8A;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #CC2936;
+}
+
+@keyframes infinite-marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-infinite-marquee {
+  display: flex;
+  width: max-content;
+  animation: infinite-marquee 45s linear infinite;
+}
+
+.animate-infinite-marquee:hover {
+  animation-play-state: paused;
+}
+
+
