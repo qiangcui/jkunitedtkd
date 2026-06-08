@@ -82,21 +82,23 @@ export default function AboutUsView({ handleNavigation, medalFilter, setMedalFil
                 />
                 
                 {/* Visual credentials strip */}
-                <div className="absolute inset-x-3 bottom-3 bg-[#0A1128]/95 backdrop-blur-md border border-[#1E3A8A]/40 rounded-2xl p-4 text-center">
+                <div className="absolute inset-x-3 bottom-3 bg-[#0A1128]/95 backdrop-blur-md border border-[#1E3A8A]/40 rounded-2xl px-3 py-3.5 text-center">
                   <p className="text-xs font-semibold text-zinc-200 tracking-widest uppercase">OFFICIAL PORTRAIT</p>
                   <p className="text-base font-extrabold text-white font-display mt-0.5">Owner & Head Instructor</p>
-                  <p className="text-[11px] text-amber-400 tracking-wider font-semibold font-display uppercase mt-0.5">Kukkiwon Standard 5th Dan Master</p>
+                  <p className="text-[10px] text-amber-400 tracking-wide font-semibold font-display uppercase mt-1 leading-snug">Instruction by a Kukkiwon Certified International Taekwondo Instructor</p>
                 </div>
               </div>
 
               {/* Decorative Korean flag dual color ring stamp */}
-              <div className="absolute -bottom-4 -right-2 bg-[#091129] border border-[#1E3A8A]/40 rounded-2xl p-4 shadow-2xl flex items-center gap-3 z-20">
+              <div className="relative z-20 mt-4 flex justify-end">
+                <div className="bg-[#091129] border border-[#1E3A8A]/40 rounded-2xl p-4 shadow-2xl flex items-center gap-3">
                 <div className="flex gap-1.5">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#CC2936] animate-pulse" />
                   <span className="w-2.5 h-2.5 rounded-full bg-blue-500" />
                 </div>
                 <div className="text-[10px] tracking-widest text-[#CC2936] font-black uppercase font-display select-none">
                   TEAM USA ATHLETE
+                </div>
                 </div>
               </div>
             </div>
@@ -112,7 +114,7 @@ export default function AboutUsView({ handleNavigation, medalFilter, setMedalFil
                   MASTER JIN HYUK KIM
                 </h1>
                 <p className="text-[#CC2936] font-display font-bold tracking-[0.18em] uppercase text-sm leading-relaxed">
-                  "Building Leadership & Unbending Character in Aurora"
+                  DEVELOPING CHARACTER, CONFIDENCE & LEADERSHIP FOR LIFE
                 </p>
               </div>
 

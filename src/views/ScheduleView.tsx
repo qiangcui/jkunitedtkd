@@ -80,7 +80,7 @@ export default function ScheduleView({ handleNavigation, scheduleFilter, setSche
             <span className="text-xs font-black tracking-widest text-[#CC2936] uppercase px-3 py-1 bg-[#CC2936]/10 rounded-full border border-[#CC2936]/30">Class Schedule</span>
             <h1 className="text-3xl md:text-5xl font-display font-black text-white uppercase tracking-tight">Weekly Class Schedule</h1>
             <p className="text-sm text-zinc-200 font-light leading-relaxed">
-              Select your category below to filter the schedule. Click any class to book your Free 1-Week Trial instantly.
+              Select your category below to filter the schedule. Click any class to book the 2-Week Trial Program – $59 (4 classes + FREE uniform).
             </p>
           </div>
 
@@ -228,7 +228,7 @@ export default function ScheduleView({ handleNavigation, scheduleFilter, setSche
                           <p className="text-[11px] text-zinc-350 font-light leading-relaxed pt-0.5">{cl.desc}</p>
 
                           <div className="flex items-center gap-1 text-[10px] text-[#CC2936] font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity pt-1">
-                            <span>Claim Free Week Spot</span>
+                            <span>Book Trial – $59</span>
                             <ArrowRight size={10} />
                           </div>
                         </div>

@@ -362,19 +362,11 @@ export const CALLIGRAPHY_ITEMS: CalligraphyItem[] = [
 
 export const BELT_RANKINGS: BeltRank[] = [
   {
-    gup: "10th Gup",
+    gup: "9th Gup",
     color: "White",
     description: "A student who has no prior knowledge of the art but has begun the journey. White, being a non-color, expresses a VOID, representing a seedling in deep winter soil awaiting spring.",
     accentClass: "border-white bg-white/5 text-white",
     dotColor: "bg-white"
-  },
-  {
-    gup: "9th Gup",
-    color: "White w/ Star",
-    starText: "Yellow, Red, Black leadership stars",
-    description: "The student has learned the basic system: 1) the student creed (Yellow Star), 2) leadership wisdom (Red Star), and 3) personal creed (Black Star).",
-    accentClass: "border-zinc-200 bg-zinc-200/5 text-zinc-300",
-    dotColor: "bg-zinc-300 border border-amber-400"
   },
   {
     gup: "8th Gup",

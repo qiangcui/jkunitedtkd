@@ -66,10 +66,10 @@ function testSetup() {
 
 function sendAdminNotification(data) {
   var formLabel = formatFormType(data.formType);
-  var subject = '[JK United TKD] New Trial Request - ' + (data.parentName || 'Website Visitor');
+  var subject = '[JK United TKD] New 2-Week Trial Request - ' + (data.parentName || 'Website Visitor');
 
   var plainBody = [
-    'New trial booking from JK United TKD website',
+    'New 2-Week Trial Program ($59) booking from JK United TKD website',
     '',
     'Form: ' + formLabel,
     'Program: ' + (data.program || '—'),
@@ -90,12 +90,13 @@ function sendAdminNotification(data) {
 
 function sendCustomerConfirmation(data) {
   var firstName = (data.parentName || 'there').split(' ')[0];
-  var subject = 'Your Free Trial Request - JK United Taekwondo';
+  var subject = 'Your 2-Week Trial Request - JK United Taekwondo';
 
   var plainBody = [
     'Hi ' + firstName + ',',
     '',
-    'Thank you for requesting a free 1-week trial at JK United Taekwondo!',
+    'Thank you for booking the 2-Week Trial Program ($59) at JK United Taekwondo!',
+    'Includes 4 Classes & FREE Uniform ($50 Value).',
     '',
     'Program: ' + (data.program || '—'),
     'We received your submission and will contact you within 24 hours.',
@@ -130,10 +131,10 @@ function buildAdminEmailHtml(data, formLabel) {
   ].join('');
 
   return wrapEmailHtml({
-    preheader: 'New trial request from ' + (data.parentName || 'website visitor'),
+    preheader: 'New 2-Week Trial request from ' + (data.parentName || 'website visitor'),
     badge: 'New Submission',
-    title: 'Trial Booking Received',
-    subtitle: 'New free trial request on the website.',
+    title: '2-Week Trial Booking Received',
+    subtitle: '2-Week Trial Program – $59 (4 classes + FREE uniform).',
     bodyContent: twoColumnTable(leftRows, rightRows),
     cta: data.phone
       ? '<a href="tel:' + escapeHtml(data.phone.replace(/\D/g, '')) + '" style="' + linkStyle() + '">Call ' + escapeHtml(data.phone) + '</a>'
@@ -151,10 +152,10 @@ function buildCustomerEmailHtml(data, firstName) {
   ].join('');
 
   return wrapEmailHtml({
-    preheader: 'We received your free trial request - JK United TKD',
+    preheader: 'We received your 2-Week Trial request - JK United TKD',
     badge: 'Request Confirmed',
     title: 'Thank You, ' + escapeHtml(firstName) + '!',
-    subtitle: 'We received your request and will contact you within 24 hours.',
+    subtitle: '2-Week Trial Program – $59. Includes 4 Classes & FREE Uniform ($50 Value). We will contact you within 24 hours.',
     bodyContent: singleColumnTable(rows),
     cta:
       '<a href="tel:7209004546" style="' + linkStyle() + '">Call ' + STUDIO_PHONE + '</a>' +
@@ -235,8 +236,8 @@ function linkStyle() {
 }
 
 function formatFormType(formType) {
-  if (formType === 'trial-booking-modal') return 'Free Trial Modal';
-  if (formType === 'trial-booking-contact') return 'Contact Page Trial Booking';
+  if (formType === 'trial-booking-modal') return '2-Week Trial Modal';
+  if (formType === 'trial-booking-contact') return 'Contact Page 2-Week Trial Booking';
   return 'Form Submission';
 }
 

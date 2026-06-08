@@ -16,8 +16,7 @@ import {
   ShieldCheck,
   Zap,
   Target,
-  Facebook,
-  Sparkles,
+  Instagram,
   ArrowRight,
   CheckCircle2,
   Star,
@@ -509,7 +508,7 @@ export default function App() {
               }}
               className="bg-[#CC2936] text-white font-semibold text-sm px-6 py-2.5 rounded-full hover:bg-white hover:text-black hover:scale-[1.03] transition-all duration-300 shadow-lg shadow-red-500/20 cursor-pointer active:scale-95 animate-pulse"
             >
-              Book Free Trial
+              Book 2-Week Trial
             </button>
           </div>
 
@@ -582,7 +581,7 @@ export default function App() {
                   }}
                   className="bg-[#CC2936] text-white w-full py-3 rounded-full text-center font-bold shadow-md cursor-pointer active:scale-95"
                 >
-                  Request a Free Week Trial
+                  2-Week Trial – $59
                 </button>
                 <a
                   href="tel:7209004546"
@@ -627,7 +626,7 @@ export default function App() {
             </p>
 
             <p className="text-white text-sm sm:text-base md:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed font-light">
-              Led by three-time USA Taekwondo Poomsae National Team Member <strong className="text-[#CC2936] font-bold">Master Jin Hyuk Kim</strong>. Enhance physical conditioning, firm self-defense confidence, and focus state of mind.
+              Led by three-time USA Taekwondo Poomsae National Team Member <strong className="text-[#CC2936] font-bold">Master Jin Hyuk Kim</strong>. Empowering students to build confidence, discipline, and character through Taekwondo excellence.
             </p>
 
             {/* CTA Multi buttons in the hero section */}
@@ -691,7 +690,8 @@ export default function App() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <p className="text-sm uppercase tracking-widest text-[#CC2936] font-bold">1-Week Free Trial Offer</p>
+                  <p className="text-sm uppercase tracking-widest text-[#CC2936] font-bold">2-Week Trial Program – $59</p>
+                  <p className="text-xs text-zinc-200 font-medium">Includes 4 Classes &amp; FREE Uniform ($50 Value)</p>
                   <h3 className="text-2xl font-display font-black text-white">Select An Age-Group</h3>
                 </div>
 
@@ -739,7 +739,7 @@ export default function App() {
                   </button>
                 </div>
 
-                <p className="text-xs sm:text-sm text-zinc-200 mt-1">No credit card or commitment required to book first week</p>
+                <p className="text-xs sm:text-sm text-zinc-200 mt-1">4 classes + FREE uniform included with your $59 trial</p>
 
               </div>
             </div>
@@ -801,8 +801,7 @@ export default function App() {
                 
                 {/* Floating champion credentials overlay box */}
                 <div className="absolute bottom-4 left-4 right-4 bg-[#0A1128]/95 backdrop-blur-md border border-[#1E3A8A]/30 rounded-xl p-4 text-center">
-                  <p className="text-xs uppercase tracking-widest text-[#CC2936] font-semibold">Master Instructor credential</p>
-                  <p className="text-sm font-semibold text-zinc-100 font-display">Kukkiwon Certified 5th Degree Black Belt</p>
+                  <p className="text-sm font-semibold text-zinc-100 font-display">Holder of a Kukkiwon Certified Instructor License</p>
                 </div>
               </div>
 
@@ -1005,7 +1004,7 @@ export default function App() {
                       }}
                       className="bg-[#CC2936] text-white font-extrabold text-sm px-6 py-3 rounded-full hover:bg-white hover:text-black hover:scale-105 active:scale-95 transition-all duration-300 shadow-md shadow-rose-950/40 cursor-pointer"
                     >
-                      Inquire / Claim trial
+                      Book 2-Week Trial
                     </button>
                     
                     <button
@@ -1278,7 +1277,7 @@ export default function App() {
                   Studio Schedule <br/>& Operating Hours
                 </h2>
                 <p className="text-zinc-350 font-light text-sm">
-                  We run dynamic classes throughout the weekday and on Saturday morning. Visit our modern training space or schedule a free session slot below.
+                  We run dynamic classes throughout the weekday and on Saturday morning. Visit our modern training space or book your 2-week trial below.
                 </p>
               </div>
 
@@ -1346,13 +1345,9 @@ export default function App() {
                     onSubmit={handleTrialSubmit}
                     className="space-y-5"
                   >
-                    <div className="space-y-2">
-                      <div className="inline-flex gap-1.5 items-center px-2.5 py-1 rounded bg-[#CC2936]/10 border border-[#CC2936]/30 text-[#CC2936] text-[10px] font-extrabold tracking-widest uppercase">
-                        <Sparkles size={11} />
-                        <span>Instant Class Trial Activation</span>
-                      </div>
-                      <h3 className="text-xl font-display font-black text-white">Book Your 1-Week Free Trial Step</h3>
-                      <p className="text-xs text-zinc-200 font-light">Complete the short info below. We'll contact you within 24 hours to secure your family's uniform size and preferred initial session time.</p>
+                    <div className="space-y-1.5">
+                      <h3 className="text-xl font-display font-black text-white">2-Week Trial Program – $59</h3>
+                      <p className="text-sm text-zinc-200 font-medium">Includes 4 Classes &amp; FREE Uniform ($50 Value)</p>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -1451,8 +1446,8 @@ export default function App() {
                             'Sending...'
                           ) : (
                             <>
-                              <span className="sm:hidden">Activate My Free Offer</span>
-                              <span className="hidden sm:inline">Activate My Free Special Offer Now</span>
+                              <span className="sm:hidden">Book My 2-Week Trial</span>
+                              <span className="hidden sm:inline">Book My 2-Week Trial – $59</span>
                             </>
                           )}
                         </span>
@@ -1513,20 +1508,20 @@ export default function App() {
                 alt="JK United Taekwondo Center"
                 className="h-12 w-auto object-contain"
               />
-              <p className="text-sm font-light text-zinc-400 leading-relaxed max-w-sm">
-                Fostering confidence, core agility, and world-class traditional martial arts discipline under certified Team USA and South Korean guidance since 2005.
+              <p className="text-sm text-zinc-400 leading-relaxed max-w-md">
+                Building confidence, character, and focus through traditional Taekwondo excellence under the leadership of three-time USA National Poomsae Team Member Master Jin Hyuk Kim.
               </p>
               <a
-                href="https://www.facebook.com/jkunitedtkd"
+                href="https://www.instagram.com/jkunitedtaekwondo/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-[#CC2936] transition-colors"
-                aria-label="Facebook page"
+                aria-label="Instagram page"
               >
                 <span className="w-8 h-8 rounded-full bg-[#0D1B3E] border border-[#1E3A8A]/30 flex items-center justify-center">
-                  <Facebook size={14} />
+                  <Instagram size={14} />
                 </span>
-                Follow us on Facebook
+                @jkunitedtaekwondo
               </a>
             </div>
 
@@ -1702,9 +1697,10 @@ export default function App() {
                     <div className="space-y-1.5 pb-2 border-b border-[#1E3A8A]/20">
                       <div className="text-amber-400 text-[10px] uppercase font-black tracking-widest flex items-center gap-1">
                         <Award size={12} />
-                        <span>Limited Spots for Free Trials</span>
+                        <span>Limited Spots Available</span>
                       </div>
-                      <h3 className="text-xl font-display font-black text-white uppercase tracking-tight">Free 1-Week Trial Enrollment</h3>
+                      <h3 className="text-xl font-display font-black text-white uppercase tracking-tight">2-Week Trial Program – $59</h3>
+                      <p className="text-[11px] text-zinc-200 font-medium">Includes 4 Classes &amp; FREE Uniform ($50 Value)</p>
                       <p className="text-[11px] text-[#CC2936] font-semibold">Currently scheduling for: {selectedProgram}</p>
                     </div>
 
@@ -1793,7 +1789,7 @@ export default function App() {
                         disabled={formSubmitting}
                         className="w-full bg-[#CC2936] text-white font-extrabold text-xs tracking-widest uppercase py-3.5 rounded-full hover:bg-white hover:text-black transition-colors cursor-pointer active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed"
                       >
-                        {formSubmitting ? 'Sending...' : 'Secure Free Spot Now'}
+                        {formSubmitting ? 'Sending...' : 'Book My 2-Week Trial – $59'}
                       </button>
                     </div>
                     
@@ -1815,7 +1811,7 @@ export default function App() {
                     <div className="space-y-2">
                       <h4 className="text-xl font-display font-black text-white">Application Received!</h4>
                       <p className="text-xs text-zinc-300 max-w-xs mx-auto leading-relaxed">
-                        Master Kim's team has registered <strong className="text-[#CC2936]">{formData.studentName || 'your student'}</strong> for the 1-Week Class trial sequence.
+                        Master Kim's team has registered <strong className="text-[#CC2936]">{formData.studentName || 'your student'}</strong> for the 2-Week Trial Program (4 classes + FREE uniform).
                       </p>
                       <p className="text-[11px] text-zinc-350 max-w-xs mx-auto">
                         We have dispatched a confirmation alert to <span className="text-white font-medium">{formData.email}</span>. We will call you soon!
