@@ -4,10 +4,9 @@ import path from 'path';
 import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
-  const isGitHubPages = process.env.GITHUB_PAGES === 'true';
-
   return {
-    base: isGitHubPages ? '/jkunitedtkd/' : '/',
+    // jkunitedtkd.com on GitHub Pages serves from the domain root.
+    base: '/',
     plugins: [react(), tailwindcss()],
     build: {
       rollupOptions: {

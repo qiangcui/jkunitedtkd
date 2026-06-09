@@ -18,7 +18,7 @@
  */
 
 var RECIPIENT_EMAIL = 'jkunitedtkd@gmail.com';
-var SITE_URL = 'https://jkunitedtkd.vercel.app';
+var SITE_URL = 'https://jkunitedtkd.com';
 var STUDIO_PHONE = '720-900-4546';
 var STUDIO_EMAIL = 'jkunitedtkd@gmail.com';
 
