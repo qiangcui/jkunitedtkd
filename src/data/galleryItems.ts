@@ -91,5 +91,23 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'Black Belt Sparring Demonstration',
     category: 'classes',
     description: 'Advanced students practicing dynamic sparring techniques on the training floor.'
+  },
+  {
+    src: assetUrl('/media/classes-youth-seated-rows.jpg'),
+    title: 'Youth Class Seated Formation',
+    category: 'classes',
+    description: 'Students sitting in disciplined rows during a youth Taekwondo class at the JK United dojang.'
+  },
+  {
+    src: assetUrl('/media/classes-community-group-photo.jpg'),
+    title: 'JK United Community Gathering',
+    category: 'classes',
+    description: 'A large, diverse group of students gathered together at the JK United Taekwondo Center.'
+  },
+  {
+    src: assetUrl('/media/classes-master-jin-youth-class.jpg'),
+    title: 'Master Kim Leading Youth Class',
+    category: 'classes',
+    description: 'Master Jin Kim instructing a full youth class in the JK United training studio.'
   }
 ];

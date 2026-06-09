@@ -848,10 +848,22 @@ export default function App() {
                 <div className="h-1 w-20 bg-gradient-to-r from-[#CC2936] to-[#1E3A8A]" />
               </div>
 
-              {/* Simplified narrative bio */}
-              <div className="text-zinc-300 font-light leading-relaxed text-sm sm:text-base">
+              {/* Narrative bio */}
+              <div className="text-zinc-300 font-light leading-relaxed text-sm sm:text-base space-y-4">
                 <p>
-                  Arriving from South Korea in 2005, Master Jin Hyuk Kim holds a prestigious <strong className="text-white font-semibold">5th-Degree Kukkiwon Black Belt</strong>. He combines traditional Korean discipline with modern conditioning to forge state champions and empower outstanding community leaders.
+                  Since arriving in the United States from South Korea in 2005, Master Jin Hyuk Kim has dedicated his life to sharing authentic Korean martial arts and developing strong character in students throughout Colorado. He began teaching in Golden, Colorado, led after-school martial arts programs at three local elementary schools, and served as the instructor for the Colorado School of Mines Taekwondo Club for nearly four years.
+                </p>
+                <p>
+                  Master Kim is a 5th-Degree Kukkiwon Certified Master Instructor, a Kukkiwon International Master Instructor, and a Certified Haidong Gumdo Instructor. As a three-time USA Taekwondo National Team Member, he continues to actively compete, believing that a true martial artist never stops learning, growing, and challenging himself. His commitment to excellence serves as an example and source of motivation for his students both inside and outside the dojang.
+                </p>
+                <p>
+                  Master Kim&apos;s success extends beyond his own achievements. Under his guidance, one of his students earned a place on the 2026 USA National Poomsae Team and represented the United States at the 2026 Pan American Taekwondo Championships.
+                </p>
+                <p>
+                  Through traditional Taekwondo training, Master Kim is passionate about helping students build confidence, discipline, focus, respect, and leadership skills that last a lifetime. His mission is not only to develop skilled martial artists, but also to help each student become the best version of themselves.
+                </p>
+                <p className="text-[#CC2936] font-display font-bold tracking-[0.12em] uppercase text-xs sm:text-sm pt-2">
+                  &ldquo;Building Character Through Taekwondo Excellence.&rdquo;
                 </p>
               </div>
 
@@ -860,10 +872,6 @@ export default function App() {
                 <div className="flex items-start gap-2 text-sm text-zinc-200">
                   <Check className="text-[#CC2936] shrink-0 mt-1" size={16} />
                   <span>3-Times USA Taekwondo National Team Member</span>
-                </div>
-                <div className="flex items-start gap-2 text-sm text-zinc-200">
-                  <Check className="text-[#CC2936] shrink-0 mt-1" size={16} />
-                  <span>5th Degree Kukkiwon Certified Master</span>
                 </div>
                 <div className="flex items-start gap-2 text-sm text-zinc-200">
                   <Check className="text-[#CC2936] shrink-0 mt-1" size={16} />
