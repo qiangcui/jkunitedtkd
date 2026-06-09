@@ -3,22 +3,52 @@ import { assetUrl } from '../assetUrl';
 export interface GalleryItem {
   src: string;
   title: string;
-  category: 'master' | 'classes' | 'facility';
+  category: 'master' | 'classes' | 'competition';
   description: string;
 }
 
 export const GALLERY_ITEMS: GalleryItem[] = [
   {
+    src: assetUrl('/media/master-jin-competition-aerial-kick.jpg'),
+    title: 'National Team Aerial Demonstration',
+    category: 'competition',
+    description: 'Master Jin Kim performing a high aerial kick during USA Taekwondo national competition.'
+  },
+  {
+    src: assetUrl('/media/competition-podium-youth-medals.jpg'),
+    title: 'Youth Tournament Podium Finish',
+    category: 'competition',
+    description: 'JK United students earning gold, silver, and bronze on the USA competition podium.'
+  },
+  {
+    src: assetUrl('/media/tournament-team-medals.jpg'),
+    title: 'Tournament Medal Winners with Master Kim',
+    category: 'competition',
+    description: 'Students proudly displaying tournament medals alongside Master Jin Kim at a championship event.'
+  },
+  {
+    src: assetUrl('/media/capture_temp.jpg'),
+    title: 'Poomsae Championship Performance',
+    category: 'competition',
+    description: 'Master Jin Kim competing in USA Taekwondo Poomsae with judges and national team athletes ringside.'
+  },
+  {
+    src: assetUrl('/media/JK-United-Video-2_2.jpeg'),
+    title: 'World Poomsae Championships 2022',
+    category: 'competition',
+    description: 'Team USA celebrating at the Goyang World Taekwondo Poomsae Championships.'
+  },
+  {
+    src: assetUrl('/media/Resized_png_20230403_110714_0000_492304801766417.jpg'),
+    title: 'World Championships Gold Medal',
+    category: 'competition',
+    description: 'Master Jin Kim with gold medal, flowers, and certificate at the Goyang 2022 World Poomsae Championships.'
+  },
+  {
     src: assetUrl('/media/jin-side-scaled.jpg'),
     title: 'Precision Form Alignment',
     category: 'master',
     description: 'Master Jin Kim demonstrating extreme flexibility and exactness in side kick extension.'
-  },
-  {
-    src: assetUrl('/media/capture_temp.jpg'),
-    title: 'Little Tigers High-Energy Drills',
-    category: 'classes',
-    description: 'Coaching youths to focus, follow directions, and calibrate balance mechanics.'
   },
   {
     src: assetUrl('/media/jin-face-scaled.jpg'),
@@ -27,28 +57,16 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     description: '5th Dan Kukkiwon Master Jin Kim displaying authentic leadership uniform.'
   },
   {
-    src: assetUrl('/media/JK-United-Video-2_2.jpeg'),
-    title: 'Team Synchronization Workout',
-    category: 'classes',
-    description: 'Developing team-wide coordination, unity, and synchronous black-belt-track form.'
-  },
-  {
-    src: assetUrl('/media/Resized_png_20230403_110714_0000_492304801766417.jpg'),
-    title: 'Official USA Team Uniform Portrait',
-    category: 'master',
-    description: 'US Poomsae National Team member representation.'
-  },
-  {
     src: assetUrl('/media/Untitled-design-6.png'),
-    title: 'Championship Training Mat Arena',
-    category: 'facility',
-    description: 'Pristine Olympic-grade flooring mats designed for premium safety.'
+    title: 'Youth Sparring Gear Training',
+    category: 'classes',
+    description: 'Students preparing for sparring with protective gear during an in-studio training session.'
   },
   {
     src: assetUrl('/media/Untitled-design-18.png'),
-    title: 'Flying Side-Kick Aerial Demonstration',
+    title: 'Group Stretching & Flexibility',
     category: 'classes',
-    description: 'Developing focus, timing, and dynamic athletic burst options.'
+    description: 'Students building flexibility and body control through structured warm-up drills in class.'
   },
   {
     src: assetUrl('/media/Untitled-design-65-1024x587.png'),
@@ -58,7 +76,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     src: assetUrl('/media/Untitled-design-66-1024x587.png'),
-    title: 'School-Age Core Leadership Sequence',
+    title: 'School-Age Focus & Meditation',
     category: 'classes',
     description: 'Teaching children to speak loudly with confidence, stand tall, and build discipline.'
   },
@@ -70,8 +88,8 @@ export const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     src: assetUrl('/media/Untitled-design.jpg'),
-    title: 'Cinematic Training Atmosphere',
-    category: 'facility',
-    description: 'The premium aesthetic and ambient dark atmosphere of JK United TKD Aurora.'
+    title: 'Black Belt Sparring Demonstration',
+    category: 'classes',
+    description: 'Advanced students practicing dynamic sparring techniques on the training floor.'
   }
-];;
+];

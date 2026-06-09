@@ -4,7 +4,7 @@
  * IMPORTANT: Do NOT open this file from Google Drive.
  * Copy-paste this code into https://script.google.com (New project).
  *
- * Setup (gloriacloudco@gmail.com):
+ * Setup (jkunitedtkd@gmail.com):
  * 1. Go to https://script.google.com → New project
  * 2. Delete default code, paste ALL of this file into Code.gs → Save
  * 3. Run testSetup() once from the editor (authorize Gmail when prompted)
@@ -17,10 +17,10 @@
  * 7. Open that /exec URL in your browser — you should see JSON, NOT a Drive error
  */
 
-var RECIPIENT_EMAIL = 'gloriacloudco@gmail.com';
+var RECIPIENT_EMAIL = 'jkunitedtkd@gmail.com';
 var SITE_URL = 'https://jkunitedtkd.vercel.app';
 var STUDIO_PHONE = '720-900-4546';
-var STUDIO_EMAIL = 'info@jkunitedtkd.com';
+var STUDIO_EMAIL = 'jkunitedtkd@gmail.com';
 
 function doPost(e) {
   try {
@@ -43,7 +43,7 @@ function doGet() {
 
 /**
  * Run this ONCE from the Apps Script editor before deploying.
- * Authorizes Gmail and sends a test email to gloriacloudco@gmail.com.
+ * Authorizes Gmail and sends a test email to jkunitedtkd@gmail.com.
  */
 function testSetup() {
   var testData = {
@@ -53,7 +53,7 @@ function testSetup() {
     studentName: 'Test Student',
     studentAge: '8',
     phone: '720-900-4546',
-    email: 'gloriacloudco@gmail.com',
+    email: 'jkunitedtkd@gmail.com',
     notes: 'This is a test submission from Apps Script setup.',
     submittedAt: new Date().toISOString(),
     site: 'JK United TKD',

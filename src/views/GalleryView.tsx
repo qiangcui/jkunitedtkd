@@ -1,7 +1,7 @@
 export interface GalleryViewProps {
   handleNavigation: (view: 'home' | 'about-us' | 'gallery' | 'education' | 'schedule', hash?: string) => void;
-  galleryFilter: 'all' | 'master' | 'classes' | 'facility';
-  setGalleryFilter: (filter: 'all' | 'master' | 'classes' | 'facility') => void;
+  galleryFilter: 'all' | 'master' | 'classes' | 'competition';
+  setGalleryFilter: (filter: 'all' | 'master' | 'classes' | 'competition') => void;
   activeLightboxIndex: number | null;
   setActiveLightboxIndex: React.Dispatch<React.SetStateAction<number | null>>;
   isMobile: boolean;
@@ -90,7 +90,7 @@ export default function GalleryView({ handleNavigation, galleryFilter, setGaller
               { id: 'all', label: 'All Media' },
               { id: 'master', label: 'Master Jin Kim' },
               { id: 'classes', label: 'Active Classes' },
-              { id: 'facility', label: 'Aurora Facility' }
+              { id: 'competition', label: 'Competition' }
             ].map((tab) => (
               <button
                 key={tab.id}
@@ -136,7 +136,7 @@ export default function GalleryView({ handleNavigation, galleryFilter, setGaller
                       </span>
                     </div>
                     <span className="absolute top-3 right-3 bg-[#0A1128]/95 backdrop-blur-md text-[10px] text-amber-400 font-extrabold font-mono tracking-widest px-2.5 py-1 rounded-md uppercase border border-[#1E3A8A]/30">
-                      {item.category === 'master' ? 'Master' : item.category === 'classes' ? 'Class' : 'Facility'}
+                      {item.category === 'master' ? 'Master' : item.category === 'classes' ? 'Class' : 'Competition'}
                     </span>
                   </div>
                   <div className="p-5 flex flex-col justify-between flex-grow bg-gradient-to-b from-[#0D1B3E] to-[#0A1128]">

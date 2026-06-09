@@ -171,6 +171,48 @@ export default function AboutUsView({ handleNavigation, medalFilter, setMedalFil
             </div>
           </div>
 
+          {/* Competition action & student achievement photos */}
+          <div className="pt-16 border-t border-[#1E3A8A]/30 space-y-8">
+            <div className="text-center space-y-3 max-w-3xl mx-auto">
+              <span className="text-xs tracking-[0.25em] text-[#CC2936] font-black uppercase">Competition Excellence</span>
+              <h2 className="text-2xl md:text-4xl font-display font-black text-white uppercase tracking-tight">
+                On the National Stage
+              </h2>
+              <p className="text-sm text-zinc-300 font-light leading-relaxed">
+                From Master Jin Kim&apos;s elite national team performances to our students earning medals at championship tournaments.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="md:col-span-2 overflow-hidden rounded-2xl border border-[#1E3A8A]/30 bg-[#0D1B3E] shadow-xl">
+                <img
+                  src={assetUrl('/media/master-jin-competition-aerial-kick.jpg')}
+                  alt="Master Jin Kim performing a high aerial kick at national Taekwondo competition"
+                  className="w-full h-full min-h-[240px] object-cover hover:scale-[1.02] transition-transform duration-500"
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="overflow-hidden rounded-2xl border border-[#1E3A8A]/30 bg-[#0D1B3E] shadow-xl">
+                <img
+                  src={assetUrl('/media/competition-podium-youth-medals.jpg')}
+                  alt="JK United youth students on USA competition podium with gold, silver, and bronze medals"
+                  className="w-full h-full min-h-[240px] object-cover hover:scale-[1.02] transition-transform duration-500"
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="md:col-span-3 overflow-hidden rounded-2xl border border-[#1E3A8A]/30 bg-[#0D1B3E] shadow-xl">
+                <img
+                  src={assetUrl('/media/tournament-team-medals.jpg')}
+                  alt="Master Jin Kim and JK United students displaying tournament medals at a championship event"
+                  className="w-full h-full max-h-[420px] object-cover object-center hover:scale-[1.02] transition-transform duration-500"
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            </div>
+          </div>
+
           {/* Championship Medal Dashboard with Live Filtering */}
           <div className="pt-16 border-t border-[#1E3A8A]/30 space-y-12">
             <div className="text-center space-y-4 max-w-3xl mx-auto">

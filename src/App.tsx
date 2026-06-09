@@ -13,7 +13,6 @@ import {
   X,
   Play,
   Award,
-  ShieldCheck,
   Zap,
   Target,
   Instagram,
@@ -123,7 +122,7 @@ export default function App() {
   const [formError, setFormError] = useState('');
 
   // Photo Gallery interactive state
-  const [galleryFilter, setGalleryFilter] = useState<'all' | 'master' | 'classes' | 'facility'>('all');
+  const [galleryFilter, setGalleryFilter] = useState<'all' | 'master' | 'classes' | 'competition'>('all');
   const [activeLightboxIndex, setActiveLightboxIndex] = useState<number | null>(null);
 
   // Education page interactive states
@@ -286,7 +285,7 @@ export default function App() {
       id: 'children',
       title: 'School-Age Children',
       age: 'Ages 7 - 12',
-      image: assetUrl('/media/Untitled-design-6.png'),
+      image: assetUrl('/media/competition-podium-youth-medals.jpg'),
       tagline: 'Confidence, elite physical conditioning, and bully-proof character development.',
       bgGradient: 'from-amber-600/20 to-black',
       borderAccent: 'border-amber-500/30'
@@ -332,7 +331,7 @@ export default function App() {
         'Introduce Olympic-style full-contact sparring matches with protective gears.'
       ],
       tagline: 'Empowering children with focus to excel in school, sports, and social realms.',
-      illustrativeImg: assetUrl('/media/Untitled-design-66-1024x587.png'),
+      illustrativeImg: assetUrl('/media/tournament-team-medals.jpg'),
       iconImg: assetUrl('/media/02programes_01_img003.png'),
       colorTheme: 'text-amber-400 border-amber-500 bg-amber-500/10'
     },
@@ -399,9 +398,9 @@ export default function App() {
               <Phone size={13} className="text-[#CC2936]" />
               <span>(720) 900-4546</span>
             </a>
-            <a href="mailto:info@jkunitedtkd.com" className="flex items-center gap-1.5 hover:text-[#CC2936] transition-colors font-medium">
+            <a href="mailto:jkunitedtkd@gmail.com" className="flex items-center gap-1.5 hover:text-[#CC2936] transition-colors font-medium">
               <Mail size={13} className="text-[#CC2936]" />
-              <span>info@jkunitedtkd.com</span>
+              <span>jkunitedtkd@gmail.com</span>
             </a>
             <div className="hidden md:flex items-center gap-1.5">
               <MapPin size={13} className="text-[#CC2936]" />
@@ -655,11 +654,7 @@ export default function App() {
             <div className="pt-8 border-t border-[#1E3A8A]/20 flex flex-wrap justify-center lg:justify-start gap-6 md:gap-10 text-sm md:text-base text-zinc-100">
               <div className="flex items-center gap-2.5">
                 <Award className="text-[#CC2936]" size={18} />
-                <span className="font-medium">3x National Team Master</span>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <ShieldCheck className="text-emerald-400" size={18} />
-                <span className="font-medium">Family Oriented Facility</span>
+                <span className="font-medium">3-Time USA National Team Member Master Jin Kim</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Zap className="text-amber-400" size={18} />
@@ -1093,6 +1088,9 @@ export default function App() {
           <div className="flex w-max">
             <div className="animate-infinite-marquee flex gap-0">
               {[
+                assetUrl('/media/master-jin-competition-aerial-kick.jpg'),
+                assetUrl('/media/competition-podium-youth-medals.jpg'),
+                assetUrl('/media/tournament-team-medals.jpg'),
                 assetUrl('/media/Untitled-design-65-1024x587.png'),
                 assetUrl('/media/Untitled-design-66-1024x587.png'),
                 assetUrl('/media/Untitled-design-67-1024x587.png'),
@@ -1101,6 +1099,9 @@ export default function App() {
                 assetUrl('/media/Untitled-design-2.png'),
                 assetUrl('/media/Untitled-design.jpg'),
                 // Repeated set to guarantee continuous, seamless end-to-end translation loop
+                assetUrl('/media/master-jin-competition-aerial-kick.jpg'),
+                assetUrl('/media/competition-podium-youth-medals.jpg'),
+                assetUrl('/media/tournament-team-medals.jpg'),
                 assetUrl('/media/Untitled-design-65-1024x587.png'),
                 assetUrl('/media/Untitled-design-66-1024x587.png'),
                 assetUrl('/media/Untitled-design-67-1024x587.png'),
@@ -1569,8 +1570,8 @@ export default function App() {
                   <span className="w-8 h-8 rounded-lg bg-[#0D1B3E] border border-[#1E3A8A]/30 flex items-center justify-center shrink-0">
                     <Mail size={14} className="text-[#CC2936]" />
                   </span>
-                  <a href="mailto:info@jkunitedtkd.com" className="text-zinc-300 hover:text-white transition-colors font-medium">
-                    info@jkunitedtkd.com
+                  <a href="mailto:jkunitedtkd@gmail.com" className="text-zinc-300 hover:text-white transition-colors font-medium">
+                    jkunitedtkd@gmail.com
                   </a>
                 </li>
                 <li className="flex items-start gap-3">
