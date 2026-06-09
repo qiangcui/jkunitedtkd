@@ -37,6 +37,13 @@ import HeroBackground from './components/HeroBackground';
 import ScrollToTop from './components/ScrollToTop';
 import { GALLERY_ITEMS } from './data/galleryItems';
 import ViewLoadingFallback from './components/ViewLoadingFallback';
+import {
+  type AppView,
+  type EducationTab,
+  type RouteState,
+  buildPath,
+  resolveRoute,
+} from './routing';
 
 const AboutUsView = lazy(() => import('./views/AboutUsView'));
 const GalleryView = lazy(() => import('./views/GalleryView'));
@@ -60,50 +67,7 @@ export default function App() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   // Dynamic Page Router View
-  const [currentView, setCurrentView] = useState<'home' | 'about-us' | 'gallery' | 'education' | 'schedule'>('home');
-
-  const handleNavigation = (view: 'home' | 'about-us' | 'gallery' | 'education' | 'schedule', hash?: string) => {
-    setMobileMenuOpen(false);
-    
-    if (view === 'about-us') {
-      setCurrentView('about-us');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
-    }
-
-    if (view === 'gallery') {
-      setCurrentView('gallery');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
-    }
-
-    if (view === 'education') {
-      setCurrentView('education');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
-    }
-
-    if (view === 'schedule') {
-      setCurrentView('schedule');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
-    }
-    
-    setCurrentView('home');
-    if (hash) {
-      setTimeout(() => {
-        const id = hash.replace('#', '');
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        } else {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-      }, 80);
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  };
+  const [currentView, setCurrentView] = useState<AppView>('home');
 
   // Program Tab Selector State
   const [activeTab, setActiveTab] = useState<'tigers' | 'children' | 'adults'>('children');
@@ -130,11 +94,73 @@ export default function App() {
   const [vocabSearch, setVocabSearch] = useState<string>('');
   const [vocabCategory, setVocabCategory] = useState<string>('all');
   const [scheduleFilter, setScheduleFilter] = useState<string>('all');
-  const [educationTab, setEducationTab] = useState<'rankings' | 'taegeuk' | 'wonshim' | 'flags' | 'terminology' | 'philosophy'>('rankings');
+  const [educationTab, setEducationTab] = useState<EducationTab>('rankings');
   const [activeTaegeukId, setActiveTaegeukId] = useState<number>(1);
   const [activeWonshimLevel, setActiveWonshimLevel] = useState<number>(1);
   const [playingAudioUrl, setPlayingAudioUrl] = useState<string | null>(null);
   const [currentAudioObj, setCurrentAudioObj] = useState<HTMLAudioElement | null>(null);
+
+  const scrollToHash = (hash?: string) => {
+    if (!hash) return;
+    const id = hash.replace('#', '');
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const applyRoute = (route: RouteState, options?: { scroll?: boolean; urlMode?: 'push' | 'replace' | 'none' }) => {
+    const { scroll = true, urlMode = 'none' } = options ?? {};
+    setMobileMenuOpen(false);
+    setCurrentView(route.view);
+    if (route.educationTab) {
+      setEducationTab(route.educationTab);
+    }
+
+    if (scroll) {
+      if (route.view === 'home' && route.hash) {
+        window.setTimeout(() => scrollToHash(route.hash), 80);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    if (urlMode !== 'none') {
+      const path = buildPath(route);
+      if (urlMode === 'replace') {
+        window.history.replaceState(null, '', path);
+      } else {
+        window.history.pushState(null, '', path);
+      }
+    }
+  };
+
+  const handleNavigation = (view: AppView, hash?: string, tab?: EducationTab) => {
+    applyRoute(
+      {
+        view,
+        hash,
+        educationTab: view === 'education' ? tab : undefined,
+      },
+      { urlMode: 'push' },
+    );
+  };
+
+  const handleEducationTabChange = (tab: EducationTab) => {
+    setEducationTab(tab);
+    window.history.pushState(null, '', buildPath({ view: 'education', educationTab: tab }));
+  };
+
+  useEffect(() => {
+    applyRoute(resolveRoute(window.location.pathname), { urlMode: 'replace' });
+
+    const onPopState = () => {
+      applyRoute(resolveRoute(window.location.pathname), { urlMode: 'none' });
+    };
+
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
+  }, []);
 
   // Form input standard states
   const [formData, setFormData] = useState({
@@ -1242,7 +1268,7 @@ export default function App() {
             vocabCategory={vocabCategory}
             setVocabCategory={setVocabCategory}
             educationTab={educationTab}
-            setEducationTab={setEducationTab}
+            setEducationTab={handleEducationTabChange}
             activeTaegeukId={activeTaegeukId}
             setActiveTaegeukId={setActiveTaegeukId}
             activeWonshimLevel={activeWonshimLevel}
@@ -1531,24 +1557,28 @@ export default function App() {
               <h4 className="text-xs uppercase font-extrabold tracking-[0.2em] text-white">Quick Navigation</h4>
               <ul className="grid grid-cols-2 gap-x-6 gap-y-3 text-sm font-semibold">
                 {[
-                  { label: 'Home', view: 'home' as const, hash: '#home' },
-                  { label: 'About Us', view: 'about-us' as const },
-                  { label: 'Schedule', view: 'schedule' as const },
-                  { label: 'Gallery', view: 'gallery' as const },
-                  { label: 'Education', view: 'education' as const },
-                  { label: 'Contact Us', view: 'home' as const, hash: '#hours', noActive: true },
-                ].map(({ label, view, hash, noActive }) => (
+                  { label: 'Home', view: 'home' as const, hash: '#home', href: '/' },
+                  { label: 'About Us', view: 'about-us' as const, href: '/about-us/' },
+                  { label: 'Schedule', view: 'schedule' as const, href: '/class-schedule-old/' },
+                  { label: 'Gallery', view: 'gallery' as const, href: '/gallery/' },
+                  { label: 'Education', view: 'education' as const, href: '/education/' },
+                  { label: 'Contact Us', view: 'home' as const, hash: '#hours', href: '/contact-us/', noActive: true },
+                ].map(({ label, view, hash, href, noActive }) => (
                   <li key={label}>
-                    <button
-                      onClick={() => handleNavigation(view, hash)}
-                      className={`transition-colors cursor-pointer text-left ${
+                    <a
+                      href={href}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleNavigation(view, hash);
+                      }}
+                      className={`transition-colors cursor-pointer text-left block ${
                         !noActive && currentView === view
                           ? 'text-[#CC2936]'
                           : 'text-zinc-400 hover:text-[#CC2936]'
                       }`}
                     >
                       {label}
-                    </button>
+                    </a>
                   </li>
                 ))}
               </ul>
